@@ -1,0 +1,20 @@
+name: scanpy # feel free to change the name of the environment, but try to keep environment name and YAML file name consistent
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.10
+  - anndata=0.10
+  - scanpy=1.10
+  - hdf5=1.14.2
+  - leidenalg
+  - louvain
+  - dask
+  - dask-ml
+  - sparse
+  - zarr<3
+  - ipykernel
+  - requests
+  # - pip
+  # - pip:
+  #   - # any pip dependencies go here
