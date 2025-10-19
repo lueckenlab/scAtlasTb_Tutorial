@@ -1,0 +1,52 @@
+DATASETS:
+  QC:
+    input:
+      split_data:
+        Hrovatin2023: data/output/Hrovatin2023.zarr
+      doublets: split_data
+      qc: doublets # split_data
+      merge: qc
+
+    doublets:
+      counts: X
+      batch: batch_integration
+      chunk_size: 20_000
+
+    split_data:
+      key: dataset
+      values:
+        - db_db
+        - 8-16wNOD
+        - mSTZ
+        - embryonic
+        - chem
+        - P16
+        - aged
+        - 4m
+        - 5wNOD
+
+    qc:
+      counts: X
+      hue:
+        - cell_type
+        - donor_id
+        - batch_integration
+        - low_q
+        - age
+        - disease
+        - scrublet_score 
+      scautoqc_gaussian_kwargs:
+        threshold: 0.1
+      scautoqc_metrics:
+        - n_counts
+        - n_genes
+        - percent_mito
+        - percent_ribo
+        - percent_hb
+        - scrublet_score
+
+    merge:
+      merge_strategy: inner
+      dask: true
+      backed: true
+      threads: 5
