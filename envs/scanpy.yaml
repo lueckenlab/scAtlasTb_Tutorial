@@ -3,10 +3,9 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python=3.10
-  - anndata=0.10
-  - scanpy=1.10
-  - hdf5=1.14.2
+  - python=3.11
+  - anndata=0.11
+  - scanpy=1.11
   - leidenalg
   - louvain
   - dask
@@ -15,6 +14,7 @@ dependencies:
   - zarr<3
   - ipykernel
   - requests
-  # - pip
-  # - pip:
-  #   - # any pip dependencies go here
+  - pip
+  - pip:
+    - git+https://github.com/mumichae/scAtlasTb_utils.git
+    - pandas<2
