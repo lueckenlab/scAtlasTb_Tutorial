@@ -1,0 +1,40 @@
+MARKER_GENES:
+  MIA:
+    acinar:
+      - Cpa1
+      - Prss2
+    alpha:
+      - Gcg
+    beta:
+      - Ins1
+      - Ins2
+    delta:
+      - Sst
+    ductal:
+      - Krt19
+      - Muc1
+      - Sox9
+    endothelial:
+      - Pecam1
+      - Plvap
+    epsilon:
+      - Ghrl
+    gamma:
+      - Ppy
+    immune:
+      - Cd52
+      - Lyz2
+      - Ptprc
+    stellate_activated:
+      - Col1a2
+      - Bicc1
+      - Pdgfra
+    stellate_quiescent:
+      - Ndufa4l2
+      - Acta2
+      - Cspg4
+      - Rgs5
+    Schwann:
+      - Cryab
+      - Plp1
+      - Sox10

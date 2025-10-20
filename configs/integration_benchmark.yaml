@@ -1,0 +1,87 @@
+DATASETS:
+  integration_benchmark:
+    input:
+      filter:
+        Hrovatin2023: data/output/Hrovatin2023.zarr
+      preprocessing: filter
+      integration: preprocessing
+      metrics: integration
+      split_data: integration
+
+    filter:
+      subset: true
+      remove_by_column:
+        dataset:
+          - db/db
+          - 8-16wNOD
+          - mSTZ
+          - embryonic
+          - chem
+          - 5wNOD
+      
+    # subset:
+      # sample_key: batch_integration
+      # label: cell_type
+      # n_cells: 50_000
+      # strategy: by_sample
+
+    split_data:
+      key: cell_type_reannotatedIntegrated
+      values:
+        - beta
+        - immune
+        - endothelial
+
+
+  integration_benchmark_beta:
+    input:
+      metrics:
+        unintegrated: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
+          integration=cb59145679/key~cell_type_reannotatedIntegrated/value~beta.zarr"
+        harmony: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
+          integration=14620cf697/key~cell_type_reannotatedIntegrated/value~beta.zarr"
+        scvi: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
+          integration=79e0b34ea3/key~cell_type_reannotatedIntegrated/value~beta.zarr"
+        # scanvi: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
+        #   integration=e6592b7a89/key~cell_type_reannotatedIntegrated/value~beta.zarr"
+        # drvi: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
+        #   integration=31d8743017/key~cell_type_reannotatedIntegrated/value~beta.zarr"
+        # scpoli: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
+        #   integration=ff102cc389/key~cell_type_reannotatedIntegrated/value~beta.zarr"
+      clustering: metrics
+      label_transfer: clustering
+      marker_genes: label_transfer
+      collect: marker_genes
+      majority_voting: collect
+
+    metrics:
+      label: cell_subtype_beta_fine_reannotatedIntegrated
+    
+    clustering:
+      recompute_neighbors: true
+      recompute_umap: true
+
+    label_transfer:
+      majority_reference:
+        reference_key: cell_subtype_beta_fine_reannotatedIntegrated
+      query_key: leiden_0.5_3
+      crosstab_kwargs:
+        dropna: true
+
+    marker_genes:
+      groups:
+        - majority_reference
+        - cell_subtype_beta_coarse_reannotatedIntegrated
+        - cell_subtype_beta_fine_reannotatedIntegrated
+        - leiden_0.5_2
+      marker_genes: MIA
+      rank_genes_groups:
+        reference: rest
+        method: wilcoxon
+      plot:
+        n_genes: 10
+      layer: layers/normcounts
+
+    majority_voting:
+      columns:
+        - majority_reference--.*
