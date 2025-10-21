@@ -8,7 +8,7 @@ There are two workflows defined under `configs/` that use the [Hrovatin et al. (
 
 ## Prerequisites
 
-The workflow has been build for Linux distributions and relies on Conda for environment management.
+The workflow has been built for Linux distributions and relies on Conda for environment management.
 Please ensure you have either [Miniforge](https://github.com/conda-forge/miniforge), [Conda](https://docs.conda.io/en/latest/) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html) installed.
 The toolbox has also been tested on macOS, but hardware acceleration may not be available.
 
@@ -59,7 +59,7 @@ The dataset used by the tutorial will be stored in `data/Hrovatin_2023.zarr`.
 
 ## Running the workflow
 
-Since this tutorial already has been set up with functioning configuration files, you can directly run the workflow after setting up the conda environments.
+Since this tutorial is already set up with functioning configuration files, you can directly run the workflow after setting up the conda environments.
 Activate the `snakemake` environment before running the workflow:
 
 ```bash
@@ -74,7 +74,7 @@ bash configs/run.sh <target> -nq
 
 The target can be anything defined by the pipeline that is input to the `configs/run.sh` script.
 The flag `-n` will enable dry-run mode, which allows you to see what jobs would be executed without actually running them, while `-q` suppresses the output of Snakemake to only show a summary of the workflow.
-You should alway run the workflow first in dry-run mode to ensure everything is set up correctly.
+You should always run the workflow first in dry-run mode to ensure everything is set up correctly.
 
 > Note: Please refer to the [documentation](https://scatlastb.readthedocs.io/en/latest/getting_started/call_pipeline.html#list-all-available-rules) for more details on available targets and how to run the workflow with different options.
 
@@ -107,7 +107,7 @@ split_data_split              1
 total                        66
 ```
 
-You can ignore any warnings before the yellow Snakemake log.
+You can ignore any warnings that appear before the yellow Snakemake log.
 Inspect the config file under `configs/qc.yaml` to see which steps are included in the workflow and how they match with the dry-run output.
 Consider adjusting the workflow in the config e.g. if you have limited resources and want to simplify the workflow.
 
@@ -117,16 +117,16 @@ If the dry-run works as expected, you can run the actual workflow with multiple 
 bash configs/run.sh qc_all -c3
 ```
 
-Beware of your computational and avoid using all cores available on your machine, especially if you have limited memory.
+Be mindful of your computational resources and avoid using all cores available on your machine, especially if you have limited memory.
 When in doubt, use a single core (`-c1`).
 
 Once the workflow has finished, you can inspect the output under `data/images/qc/`.
-Refer to the [scAtlas documentation](https://scatlastb.readthedocs.io/en/latest/workflows/qc.html) for more details on the output files.
+Refer to the [scAtlasTb documentation](https://scatlastb.readthedocs.io/en/latest/workflows/qc.html) for more details on the output files.
 
 ### Integration benchmark workflow
 
 The integration benchmark workflow is a lot more complex than the QC workflow and may take a long time to run depending on your hardware.
-Look into the config file under `configs/integration_benchmark.yaml` to see which steps are included in the workflow and consider adjusting the workflow in the config e.g. if you have limited resources and want to simplify the workflow.
+Look into the config file under `configs/integration_benchmark.yaml` to see which steps are included in the workflow and consider adjusting the workflow in the config e.g. by removing some integration methods if resources are limited.
 
 Since the workflow contains many more options that are re-used by different steps, much of the defaults are configured under `configs/defaults.yaml`.
 Read about defaults in the [scAtlasTb documentation](https://scatlastb.readthedocs.io/en/latest/advanced_configuration/advanced.html#set-defaults).
@@ -165,7 +165,7 @@ The `collect` step collects the different integration outputs and combines them 
 Finally, the `majority_voting` step computes consensus labels based on the label transfer results from the different integration methods.
 
 ```bash
-bash configs/run.sh clustering_all marker_genes_all majority_voting_all -c3
+bash configs/run.sh clustering_all majority_voting_all -c3
 ```
 
 The final output will be stored under `data/pipeline/majority_voting/dataset~integration_benchmark_beta/`.
