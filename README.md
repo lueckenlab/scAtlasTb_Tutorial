@@ -69,10 +69,12 @@ conda activate snakemake
 Then, you can run the workflow with the following command:
 
 ```bash
-bash configs/run.sh <target> -nq
+bash run.sh
+   <target> -nq
 ```
 
-The target can be anything defined by the pipeline that is input to the `configs/run.sh` script.
+The target can be anything defined by the pipeline that is input to the `run.sh
+  ` script.
 The flag `-n` will enable dry-run mode, which allows you to see what jobs would be executed without actually running them, while `-q` suppresses the output of Snakemake to only show a summary of the workflow.
 You should always run the workflow first in dry-run mode to ensure everything is set up correctly.
 
@@ -83,7 +85,8 @@ You should always run the workflow first in dry-run mode to ensure everything is
 To run the QC workflow, use the following command:
 
 ```bash
-bash configs/run.sh qc_all -nq
+bash run.sh
+   qc_all -nq
 ```
 
 which should give you the following output:
@@ -114,7 +117,8 @@ Consider adjusting the workflow in the config e.g. if you have limited resources
 If the dry-run works as expected, you can run the actual workflow with multiple cores:
 
 ```bash
-bash configs/run.sh qc_all -c3
+bash run.sh
+   qc_all -c3
 ```
 
 Be mindful of your computational resources and avoid using all cores available on your machine, especially if you have limited memory.
@@ -134,7 +138,8 @@ Read about defaults in the [scAtlasTb documentation](https://scatlastb.readthedo
 Check the dry-run output first:
 
 ```bash
-bash configs/run.sh integration_all metrics_all -nq
+bash run.sh
+   integration_all metrics_all -nq
 ```
 
 You can specify any target that is defined in one of the input maps in the config files.
@@ -142,7 +147,8 @@ You can specify any target that is defined in one of the input maps in the confi
 Call the actual integration workflow with multiple cores:
 
 ```bash
-bash configs/run.sh integration_all -c3
+bash run.sh
+   integration_all -c3
 ```
 
 If any methods fail or the workflow takes too long and you just want a proof-of-concept, consider adjusting the workflow in the config e.g. by removing some integration methods.
@@ -152,7 +158,8 @@ If the workflow has finished successfully, you can inspect the integration UMAPs
 Continue with the metrics to complete the benchmark:
 
 ```bash
-bash configs/run.sh metrics_all -c3
+bash run.sh
+   metrics_all -c3
 ```
 
 The metrics plots will be stored under `data/images/metrics/`.
@@ -165,7 +172,8 @@ The `collect` step collects the different integration outputs and combines them 
 Finally, the `majority_voting` step computes consensus labels based on the label transfer results from the different integration methods.
 
 ```bash
-bash configs/run.sh clustering_all majority_voting_all -c3
+bash run.sh
+   clustering_all majority_voting_all -c3
 ```
 
 The final output will be stored under `data/pipeline/majority_voting/dataset~integration_benchmark_beta/`.
