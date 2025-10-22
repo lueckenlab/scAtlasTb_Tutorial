@@ -42,6 +42,8 @@ DATASETS:
           integration=14620cf697/key~cell_type_reannotatedIntegrated/value~beta.zarr"
         scvi: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
           integration=79e0b34ea3/key~cell_type_reannotatedIntegrated/value~beta.zarr"
+        # comment or uncomment methods to include/exclude them from the workflow
+        # make sure that the methods you uncomment also exists in the defaults.yaml
         # scanvi: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
         #   integration=e6592b7a89/key~cell_type_reannotatedIntegrated/value~beta.zarr"
         # drvi: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
