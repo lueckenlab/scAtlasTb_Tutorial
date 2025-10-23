@@ -36,6 +36,8 @@ You will need the following environments:
 - `drvi` (optional): for DRVI integration
 - `scarches` (optional): for scPoli integration
 - `rapids_singlecell` (optional): for GPU-accelerated scanpy operations
+- `scib`: for computing integration metrics
+- `funkyheatmap`: for advanced metrics visualizations (check out the [documentation](https://scatlastb.readthedocs.io/en/latest/advanced_configuration/troubleshooting.html#working-on-apple-silicon) on how to use it with Apple Silicon)
 
 The only exception is `scanpy`, which you should install from this repository (scAtlasTb_Tutorial) to ensure compatibility with the downstream analysis example.
 You can find the environment file under `scAtlasTb_Tutorial/envs/scanpy.yaml`, as well as instructions under `scAtlasTb_Tutorial/envs/README.md`.
