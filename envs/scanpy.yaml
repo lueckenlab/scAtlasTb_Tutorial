@@ -15,6 +15,7 @@ dependencies:
   - sparse
   - zarr<3
   - ipykernel
+  - ipywidgets
   - requests
   - pip
   - pip:

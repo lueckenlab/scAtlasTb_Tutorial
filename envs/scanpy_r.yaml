@@ -10,9 +10,10 @@ dependencies:
   - leidenalg
   - dask
   - zarr<3
+  - ipywidgets
+  - ipykernel
   - r-base
   - r-biocmanager
-  - ipykernel
   - r-irkernel
   - pip
   - pip:

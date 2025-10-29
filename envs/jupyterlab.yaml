@@ -9,3 +9,4 @@ dependencies:
   - nb_conda_kernels
   - nbconvert
   - nbdime
+  - ipywidgets
