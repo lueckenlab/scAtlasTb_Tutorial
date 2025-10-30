@@ -2,10 +2,11 @@ name: jupyterlab
 channels:
   - conda-forge
 dependencies:
-  - python<=3.9
+  - python<=3.11
   - jupyterlab
   - ipykernel
   - nb_conda
   - nb_conda_kernels
   - nbconvert
   - nbdime
+  - ipywidgets

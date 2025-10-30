@@ -3,11 +3,19 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python=3.9
-  - r-base
-  - scanpy=1.9
-  - numpy<1.24
-  - matplotlib<3.7
-  - r-biocmanager
+  - python=3.11
+  - anndata=0.11
+  - scanpy=1.11
+  - pandas<2
+  - leidenalg
+  - dask
+  - zarr<3
+  - ipywidgets
   - ipykernel
+  - r-base
+  - r-biocmanager
   - r-irkernel
+  - pip
+  - pip:
+    - git+https://github.com/mumichae/scAtlasTb_utils.git
+    - pandas<2

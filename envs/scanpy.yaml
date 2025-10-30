@@ -1,4 +1,6 @@
-name: scanpy # feel free to change the name of the environment, but try to keep environment name and YAML file name consistent
+name: scanpy
+# Note: feel free to change the name of the environment, 
+# and update the YAML file name accordingly to keep them consistent
 channels:
   - conda-forge
   - bioconda
@@ -13,6 +15,7 @@ dependencies:
   - sparse
   - zarr<3
   - ipykernel
+  - ipywidgets
   - requests
   - pip
   - pip:
