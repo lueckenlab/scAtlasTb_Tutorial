@@ -1,0 +1,50 @@
+cluster:
+  mkdir -p logs/$(date +"%Y_%m_%d") &&
+  sbatch
+    --partition={resources.partition}
+    --gpus={resources.gpu}
+    --cpus-per-task={threads}
+    --mem={resources.mem_mb}
+    --time={resources.time}
+    --job-name={rule}
+    --output=logs/$(date +"%Y_%m_%d")/%j-{rule}.out
+    --parsable
+default-resources:
+  - partition=preempted
+  - gpu=0
+  - mem_mb=32000
+  - time="0-02:00:00"
+restart-times: 2
+max-jobs-per-second: 10
+max-status-checks-per-second: 1
+local-cores: 1
+latency-wait: 200
+jobs: 20
+keep-going: True
+rerun-incomplete: True
+printshellcmds: True
+scheduler: ilp
+use-conda: True
+cluster-cancel: scancel
+cluster-status: .profiles/slurm-status.py
+rerun-triggers:
+  - mtime
+  - params
+  - input
+  - code
+#  - software-env
+show-failed-logs: True
+shadow-prefix: /tmp/michaela.mueller
+# groups:
+  # - batch_analysis_determine_covariates=batch_analysis
+  # - batch_analysis_plot=batch_analysis
+  # - metrics_prepare=metrics_prepare
+  # - metrics_score_genes=metrics_score_genes
+  # - metrics_cluster=metrics_cluster
+  # - metrics_run=metrics
+# group-components:
+  # - batch_analysis=3
+  # - metrics_prepare=2
+  # - score_genes=2
+  # - metrics_cluster=2
+  # - metrics=2

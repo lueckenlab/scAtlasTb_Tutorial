@@ -35,7 +35,7 @@ DATASETS:
 
   integration_benchmark_beta:
     input:
-      metrics:
+      clustering:
         unintegrated: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
           integration=cb59145679/key~cell_type_reannotatedIntegrated/value~beta.zarr"
         harmony: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
@@ -50,8 +50,8 @@ DATASETS:
         #   integration=31d8743017/key~cell_type_reannotatedIntegrated/value~beta.zarr"
         # scpoli: "data/pipeline/split_data/dataset~integration_benchmark/file_id~integration:preprocessing:filter:Hrovatin2023--\
         #   integration=ff102cc389/key~cell_type_reannotatedIntegrated/value~beta.zarr"
-      clustering: metrics
-      label_transfer: clustering
+      metrics: clustering
+      label_transfer: metrics
       marker_genes: label_transfer
       collect: marker_genes
       majority_voting: collect

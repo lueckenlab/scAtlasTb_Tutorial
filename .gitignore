@@ -352,3 +352,8 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# local runtime links and logs
+/data
+/utils
+/logs/

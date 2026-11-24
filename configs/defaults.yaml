@@ -3,7 +3,7 @@ images: data/images
 
 os: intel
 cran_url: http://cran.us.r-project.org
-use_gpu: false
+use_gpu: true
 
 dataset_meta: configs/datasets.tsv
 schema_file: configs/schema_mapping_tier1.tsv
